@@ -139,9 +139,14 @@ if($SYMB_UID){
 									</a>
 								</li>
 								<li style="margin-left:10px">
-									<a href="../editor/skeletalsubmit.php?collid=<?php echo $collid; ?>">
-										<?php echo $LANG['SKELETAL']; ?>
-									</a>
+								    <a href="../editor/skeletalsubmit.php?collid=<?php echo $collid; ?>">
+									<?php echo $LANG['SKELETAL']; ?>
+								    </a>
+								</li>
+								<li style="margin-left:10px">
+								    <a href="../editor/dbbi.php?collid=<?php echo $collid; ?>">
+									<?php echo "Database By Image"; ?>
+								    </a>
 								</li>
 								<?php
 							}
@@ -330,7 +335,7 @@ if($SYMB_UID){
 			<div style='margin:10px;'>
 				<?php
 				echo $collManager->getMetadataHtml($collData, $LANG);
-				$datasetKey = $collManager->getDatasetKey();
+
 				if($collData['publishtogbif'] && $datasetKey){
 					$datasetKey = $collManager->getDatasetKey();
 					if($datasetKey){
@@ -344,7 +349,10 @@ if($SYMB_UID){
 				}
 				if($collData['publishtoidigbio']){
 					$idigbioKey = $collManager->getIdigbioKey();
-					if(!$idigbioKey) $idigbioKey = $collManager->findIdigbioKey($collData['guid']);
+					if(!$idigbioKey){
+						$idigbioKey = $collManager->findIdigbioKey($collData['guid']);
+					}
+
 					if($idigbioKey){
 						$dataUrl = 'https://www.idigbio.org/portal/recordsets/'.$idigbioKey;
 						?>
