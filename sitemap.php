@@ -306,7 +306,7 @@ $smManager = new SiteMapManager();
 							<li class="nested-li"><a href="taxa/profile/tpeditor.php?taxon=&category=imagequicksort&tabindex=2"><?php echo $LANG['IMGSORTORD'];?></a></li>
 							<li class="nested-li"><a href="taxa/profile/tpeditor.php?taxon=&category=imageadd&tabindex=3"><?php echo htmlspecialchars($LANG['ADDNEWIMG'], HTML_SPECIAL_CHARS_FLAGS);?></a></li>
 
-							<li><a href="collections/map/staticmaphandler.php"><?php echo htmlspecialchars($LANG['MANAGE_TAXON_THUMBNAILS']?? 'Manage Taxon Profile Map Thumbnails', HTML_SPECIAL_CHARS_FLAGS);?></a></li>
+							<li><a href="collections/map/staticmaphandler.php"><?php echo htmlspecialchars($LANG['MANAGE_TAXON_THUMBNAILS'], HTML_SPECIAL_CHARS_FLAGS);?></a></li>
 						</ul>
 						<?php
 					}
