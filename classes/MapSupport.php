@@ -120,8 +120,12 @@ class MapSupport extends Manager{
 			$ext = substr($_FILES['mapupload']['name'], strrpos($_FILES['mapupload']['name'], '.'));
 			$fileName = $tid.'_'.$mapType.'_'.time() . $ext;
 
+         //Clear Out Old Thumbnails
+         $this->deleteAllTaxonMaps($tid);
+
 			$this->setTargetPaths();
 			if(move_uploaded_file($_FILES['mapupload']['tmp_name'], $this->targetPath.$fileName)){
+		      $this->targetPath;
 				$status = $this->insertImage($tid, $title, $this->targetUrl.$fileName);
 			}
 			else{
@@ -129,7 +133,7 @@ class MapSupport extends Manager{
 				return false;
 			}
 		}
-	}
+   }
 
 	private function insertImage($tid, $title, $url){
 		$status = false;
@@ -144,8 +148,37 @@ class MapSupport extends Manager{
 		return $status;
 	}
 
-	private function deleteAllTaxonMaps($tid){
+	public function deleteAllTaxonMaps($tid){
 		$status = false;
+
+      $sql = <<<sql
+         SELECT mid, url from taxamaps where tid = ?;
+         sql;
+
+      $taxon_maps = [];
+      //Removes Thumbnails images
+      if($stmt = $this->conn->prepare($sql)){
+
+			$stmt->bind_param('i', $tid);
+
+			$stmt->execute();
+         $result = $stmt->get_result();
+         $cnt = 0;
+
+         while ($myrow = $result->fetch_assoc()) {
+            $cnt++;
+            $image_loc = str_replace($GLOBALS['IMAGE_ROOT_URL'], $GLOBALS['IMAGE_ROOT_PATH'], $myrow['url']);
+            if(file_exists($image_loc)) {
+               unlink($image_loc);
+            }
+         }
+			$stmt->close();
+
+         //Bails if there isn't anything to delete
+         if($cnt === 0) return true;
+      }
+
+      //Remove Thumbnail data
 		$sql = 'DELETE FROM taxamaps WHERE tid = ?';
 		if($stmt = $this->conn->prepare($sql)){
 			$stmt->bind_param('i', $tid);
@@ -153,7 +186,8 @@ class MapSupport extends Manager{
 			if($stmt->affected_rows) $status = true;
 			elseif($stmt->error) $this->errorMessage = 'ERROR deleting all taxon maps: '.$stmt->error;
 			$stmt->close();
-		}
+      }
+
 		return $status;
 	}
 
