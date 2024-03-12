@@ -37,6 +37,11 @@ $LANG['SPONSOR_EXPLAIN'] = "Les administrateurs de collection répertoriés ci-d
 						Cela permet aux utilisateurs de saisir des données de terrain sous forme d'observations directement liées à leur profil d'utilisateur, d'imprimer des étiquettes,
 						et les données de collection ultérieures peuvent être transférées une fois que les spécimens sont donnés à cette collection.
 						La liste ci-dessous répertorie tous les utilisateurs qui ont reçu de tels droits par l'un des administrateurs de collection énumérés ci-dessus.";
+
+$LANG['CHECKLIST_SPONSOR'] = 'Liste de contrôle / Parrainage de la gestion des ensembles de données';
+$LANG['CHECKLIST_SPONSOR_EXPLAIN'] = 'Les administrateurs de collections répertoriés ci-dessus peuvent parrainer des utilisateurs pour la gestion des listes de contrôle et des ensembles de données.
+						Cela permet aux utilisateurs de créer de nouvelles listes de contrôle ou ensembles de données publics et privés qui sont directement liés à leur profil utilisateur. Les listes de contrôle et les ensembles de données publics sont visibles par tous les visiteurs du portail.';
+
 $LANG['SURE_DELETE'] = 'Êtes-vous sûr de vouloir supprimer ces autorisations?';
 $LANG['NONE_SPONSORED'] = "Aucun utilisateur n'a encore été parrainé";
 $LANG['NEW_SPONSOR'] = 'Nouveau Parrainage';
@@ -59,5 +64,7 @@ $LANG['ALL_RANGES'] = 'Toutes les gammes taxonomiques approuvées énumérées c
 $LANG['SURE_REM_ID'] = "Êtes-vous sûr de vouloir supprimer les droits d'édition d'identification pour cet utilisateur?";
 $LANG['NO_ID_PERMS'] = "Il n'y a pas d'autorisations d'éditeur d'identification";
 $LANG['NOT_AUTH'] = 'Non autorisé à voir cette page. Vous devez avoir le droit administratif pour cette collection.';
+
+$LANG['DROP_ICON'] = 'Déposer l\'icône';
 
 ?>
